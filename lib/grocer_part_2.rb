@@ -4,9 +4,9 @@ def apply_coupons(cart, coupons)
   discounted_cart = []
   coupon_hash = {}
   cart.each_with_index do |hash, i|
-    if hash[:clearance] == false
-      next
-    else
+    # if hash[:clearance] == false
+    #   next
+    # else
       coupons.each_with_index do |coupon, i2|
         if coupon[:item] != hash[:item]
           next
@@ -21,7 +21,7 @@ def apply_coupons(cart, coupons)
           cart[i][:count] %= coupon[:num]
         end  
       end
-    end
+    # end
   end
   cart += discounted_cart
   return cart
