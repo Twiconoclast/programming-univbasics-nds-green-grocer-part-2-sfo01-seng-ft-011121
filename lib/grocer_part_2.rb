@@ -4,24 +4,20 @@ def apply_coupons(cart, coupons)
   discounted_cart = []
   coupon_hash = {}
   cart.each_with_index do |hash, i|
-    # if hash[:clearance] == false
-    #   next
-    # else
-      coupons.each_with_index do |coupon, i2|
-        if coupon[:item] != hash[:item]
-          next
-        elsif coupon[:item] == hash[:item]
-          coupon_hash = {
-            :item => hash[:item] + " W/COUPON",
-            :price => coupon[:cost] / coupon[:num],
-            :clearance => hash[:clearance],
-            :count => (hash[:count] / coupon[:num]) * coupon[:num]
-            }
-          discounted_cart << coupon_hash
-          cart[i][:count] %= coupon[:num]
-        end  
-      end
-    # end
+    coupons.each_with_index do |coupon, i2|
+      if coupon[:item] != hash[:item]
+        next
+      elsif coupon[:item] == hash[:item]
+        coupon_hash = {
+          :item => hash[:item] + " W/COUPON",
+          :price => coupon[:cost] / coupon[:num],
+          :clearance => hash[:clearance],
+          :count => (hash[:count] / coupon[:num]) * coupon[:num]
+        }
+        discounted_cart << coupon_hash
+        cart[i][:count] %= coupon[:num]
+      end  
+    end
   end
   cart += discounted_cart
   return cart
