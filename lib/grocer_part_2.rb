@@ -3,7 +3,7 @@ require_relative './part_1_solution.rb'
 def apply_coupons(cart, coupons)
   discounted_cart = []
   coupon_hash = {}
-  cart.each do |hash|
+  cart.each_with_index do |hash, i|
     coupons.each do |coupon|
       if coupon[:item] != hash[:item]
         next
